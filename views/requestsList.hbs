@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Requests List</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Requests List</h1>  
+    <table>
+            {{#each requests}}
+                <tr>
+                    <td>{{this.request}}</td>
+                    <td>{{this.data}}</td>
+                </tr>
+            {{/each}}
+    </table>  
+    <br>
+    <a href="/">Return home:</a>
+</body>
+<html>

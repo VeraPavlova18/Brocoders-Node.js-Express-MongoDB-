@@ -8,6 +8,8 @@ let dbClient;
 const port = process.env.port || 3000;
 const app = express();
 
+app.set('view engine', 'hbs');
+
 mongoClient.connect((err, client) => {
   if (err) console.log(err);
   dbClient = client;
@@ -16,18 +18,16 @@ mongoClient.connect((err, client) => {
 });
 
 app.get('/', (req, res) => {
-  res.send(`<h1>Home page</h1>
-  <h2> Please add any text after "/" in the address bar </h2>
-  <p> <b> for example: /any_text </b> </p>
-  <p> <b> or follow the link: <a href="/exampleURL">ExampleURL</a> </b> </p>`);
+  res.render('home');
 });
 
 app.get('/:trap_id/requests', (req, res) => {
   const collection = req.app.locals.collection;
   collection.find({}).toArray((err, requests) => {
     if (err) console.log(err);
-    console.log(requests);
-    res.send(requests);
+    res.render('requestsList', {
+      requests,
+    });
   });
 });
 
@@ -49,8 +49,9 @@ app.use('/:trap_id', (req, res, next) => {
 
 app.all('/:trap_id', (req, res) => {
   const trapId = req.params.trap_id;
-  res.send(`<h1>${trapId}</h1>  
-  <h2><a href="/${trapId}/requests">List of the received requests</a></h2>`);
+  res.render('trapId', {
+    trapId,
+  });
 });
 
 process.on('SIGINT', () => {

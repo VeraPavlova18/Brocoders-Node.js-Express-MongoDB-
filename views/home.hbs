@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home Page Requests Trap</title>
-    <meta charset="utf-8" />
-</head>
-<body>
-  <h1>Home page</h1>
-  <h2> Please add any text after "/" in the address bar </h2>
-  <p> <b> for example: /any_text </b> </p>
-  <p> <b> or follow the link: <a href="/exampleURL">ExampleURL</a> </b> </p>
-</body>
-<html>
+<div class = "jumbotron">
+  <h1 class = "display-4">{{title}}</h1>
+  <p class = "lead">This is a simple tool for capture and display HTTP requests</p>
+  <hr class = "my-4">
+  <form method='post' action='/'>
+  	<div class = "form-group">
+    	<label for = "exampleInputEmail1">Enter any text:</label>
+    	<input type = "text" class = "form-control" placeholder = "any_text" name="reqExample">
+  	</div>  
+  <button class = "btn btn-info btn-lg" type='submit'>Submit request</button>
+	</form>
+</div>
+
+
+
+  

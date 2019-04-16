@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Request Trap</title>
-    <meta charset="utf-8" />
-</head>
-<body>
-  <h1>{{trapId}}</h1>  
-  <p><a href="/${trapId}/requests">List of the received requests</a></p>
-</body>
-<html>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+		<h1 class="display-4">{{title}}: {{trapId}}</h1>
+		<div class="alert alert-success" role="alert">			
+			<h4 class="alert-heading">Well done!</h4>
+			<p>The request <b>"{{trapId}}"</b> was successfully added to the request list.</p>
+			<hr>
+			<p class="mb-0">You can add more requests or go to the list of already added requests.</p>
+		</div> 
+		<p><a href="/{{trapId}}/requests">Follow the list of requests</a></p>
+  </div>
+</div>

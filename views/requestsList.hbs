@@ -1,20 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Requests List</title>
-    <meta charset="utf-8" />
-</head>
-<body>
-    <h1>Requests List</h1>  
-    <table>
-            {{#each requests}}
-                <tr>
-                    <td>{{this.request}}</td>
-                    <td>{{this.data}}</td>
-                </tr>
-            {{/each}}
-    </table>  
-    <br>
-    <a href="/">Return home:</a>
-</body>
-<html>
+<h1>{{title}}</h1> 
+<table class="table table-hover table-dark">
+	<caption>List of requests</caption>
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Request</th>
+			<th scope="col">Info</th>      
+		</tr>
+	</thead>
+	<tbody>   
+		{{#each requests}}
+		<tr>
+			<th scope="row">1</th>
+			<td>{{this.request}}</td>
+			<td>{{this.reqInfo}}</td>
+		</tr>	
+		{{/each}}
+	</tbody>	
+</table>
+<nav aria-label="Page navigation example">
+	<ul class="pagination nav justify-content-center">
+		<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+		<li class="page-item"><a class="page-link" href="#">1</a></li>
+		<li class="page-item"><a class="page-link" href="#">2</a></li>
+		<li class="page-item"><a class="page-link" href="#">3</a></li>
+		<li class="page-item"><a class="page-link" href="#">Next</a></li>
+	</ul>
+</nav>

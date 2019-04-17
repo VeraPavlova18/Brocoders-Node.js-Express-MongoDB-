@@ -4,9 +4,13 @@ const moment = require('moment');
 const bodyParser = require('body-parser');
 const expressHbs = require('express-handlebars');
 const hbs = require('hbs');
+const cookieParser = require('cookie-parser');
+
 const { mongoose, Request } = require('../mongoose/index');
 
 module.exports = function (app) {
+  app.use(cookieParser());
+
   mongoose.connect(process.env.DB_URL, { useNewUrlParser: true }, () => {
     try {
       app.listen(process.env.PORT, () => console.log('Server has started'));
@@ -34,7 +38,7 @@ module.exports = function (app) {
 
   app.get('/:trap_id/requests', ({ query: { page } }, res) => {
     page = +page || 1;
-    Request.paginate({}, { limit: 10 })
+    Request.paginate({}, { limit: 5, page })
       .then(({ docs, total, limit }) => {
         let i = 0;
         docs.map((obj) => {
@@ -55,12 +59,14 @@ module.exports = function (app) {
   });
 
   app.use('/:trap_id', ({
-    method, ip, protocol, params: { trap_id: trapId }, query,
+    method, ip, protocol, params: { trap_id: trapId }, query, cookies, headers,
   }, res, next) => {
     const date = moment().format('MMMM Do YYYY, h:mm:ss a');
     query = JSON.stringify(query);
+    cookies = JSON.stringify(cookies);
+    headers = JSON.stringify(headers);
     const request = new Request({
-      trapId, date, ip, method, protocol, query,
+      trapId, date, ip, method, protocol, query, cookies, headers,
     });
     try {
       request.save();

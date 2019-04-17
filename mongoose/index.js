@@ -11,7 +11,10 @@ const reqTrapScheme = new Schema({
   method: String,
   protocol: String,
   query: { type: String, default: '' },
+  cookies: { type: String, default: '' },
+  headers: { type: String, default: '' },
 }, { versionKey: false });
+
 reqTrapScheme.plugin(mongoosePaginate);
 
 const Request = mongoose.model('Request', reqTrapScheme);

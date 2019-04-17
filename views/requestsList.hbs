@@ -1,6 +1,5 @@
 <h1>{{title}}</h1> 
-<table class="table table-hover table-dark">
-	<caption>List of requests</caption>
+<table class="table table-hover table-dark table-responsive">	
 	<thead>
 		<tr>
 			<th scope="col">#</th>
@@ -10,6 +9,8 @@
 			<th scope="col">Method</th> 
 			<th scope="col">Protocol</th>    
 			<th scope="col">Query-String</th>   
+			<th scope="col">Cookies</th> 
+			<th scope="col">Headers</th>
 		</tr>
 	</thead>
 	<tbody>   
@@ -22,6 +23,8 @@
 			<td>{{this.method}}</td>
 			<td>{{this.protocol}}</td>
 			<td>{{this.query}}</td>
+			<td>{{this.cookies}}</td>
+			<td>{{this.headers}}</td>
 		</tr>	
 		{{/each}}
 	</tbody>	

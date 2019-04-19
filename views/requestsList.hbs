@@ -1,29 +1,43 @@
 <h1>{{title}}</h1> 
-<table class="table table-hover table-dark">
-	<caption>List of requests</caption>
+<table class="table table-hover table-dark table-responsive table-sm">	
 	<thead>
 		<tr>
 			<th scope="col">#</th>
 			<th scope="col">Request</th>
-			<th scope="col">Info</th>      
+			<th scope="col">Date</th>
+			<th scope="col">IP</th>  
+			<th scope="col">Method</th> 
+			<th scope="col">Protocol</th>    
+			<th scope="col">Query-String</th> 
+			<th scope="col">QueryParams</th>  
+			<th scope="col">Cookies</th> 
+			<th scope="col">Headers</th>
 		</tr>
 	</thead>
 	<tbody>   
 		{{#each requests}}
 		<tr>
-			<th scope="row">1</th>
-			<td>{{this.request}}</td>
-			<td>{{this.reqInfo}}</td>
+			<th scope="row">{{this.i}}</th>
+			<td>{{this.trapId}}</td>
+			<td>{{this.date}}</td>
+			<td>{{this.ip}}</td>
+			<td>{{this.method}}</td>
+			<td>{{this.protocol}}</td>
+			<td>{{this.query}}</td>
+			<td><pre class="text-white">{{this.queryParams}}</pre></td>
+			<td><pre class="text-white">{{this.cookies}}</pre></td>
+			<td><pre class="text-white">{{this.headers}}</pre></td>
 		</tr>	
 		{{/each}}
 	</tbody>	
 </table>
 <nav aria-label="Page navigation example">
 	<ul class="pagination nav justify-content-center">
-		<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-		<li class="page-item"><a class="page-link" href="#">1</a></li>
-		<li class="page-item"><a class="page-link" href="#">2</a></li>
-		<li class="page-item"><a class="page-link" href="#">3</a></li>
-		<li class="page-item"><a class="page-link" href="#">Next</a></li>
+		{{#if prevPage}}
+			<li class="page-item"><a class="page-link" href="?page={{prevPage}}">Previous</a></li>
+		{{/if}}		
+		{{#if nextPage}}
+			<li class="page-item"><a class="page-link" href="?page={{nextPage}}">Next</a></li>
+		{{/if}}	
 	</ul>
 </nav>

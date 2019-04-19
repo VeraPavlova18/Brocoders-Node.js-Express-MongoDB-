@@ -4,7 +4,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const { getMaine, postMaine, getRequests, useTrapId, allTrapId } = require('../src/requestRoutersBody');
+const { getMaine, postMaine, getRequests, useTrapId, allTrapId } = require('../controllers');
 
 const router = new express.Router();
 

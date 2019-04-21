@@ -1,8 +1,7 @@
-<h1>{{title}}</h1> 
-<table class="table table-hover table-dark table-responsive table-sm">	
+<h1>{{title}}</h1>
+<table class="table table-hover table-dark table-responsive table-sm" id="tableOfRequests">	
 	<thead>
-		<tr>
-			<th scope="col">#</th>
+		<tr>			
 			<th scope="col">Request</th>
 			<th scope="col">Date</th>
 			<th scope="col">IP</th>  
@@ -16,8 +15,7 @@
 	</thead>
 	<tbody>   
 		{{#each requests}}
-		<tr>
-			<th scope="row">{{this.i}}</th>
+		<tr>			
 			<td>{{this.trapId}}</td>
 			<td>{{this.date}}</td>
 			<td>{{this.ip}}</td>
@@ -31,7 +29,7 @@
 		{{/each}}
 	</tbody>	
 </table>
-<nav aria-label="Page navigation example">
+<nav>
 	<ul class="pagination nav justify-content-center">
 		{{#if prevPage}}
 			<li class="page-item"><a class="page-link" href="?page={{prevPage}}">Previous</a></li>
@@ -41,3 +39,5 @@
 		{{/if}}	
 	</ul>
 </nav>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/assets/client.js"></script>

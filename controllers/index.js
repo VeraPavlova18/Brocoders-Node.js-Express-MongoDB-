@@ -13,12 +13,7 @@ const postMaine = ({ body: { reqExample } }, res) => res.redirect(reqExample || 
 const getRequests = async ({ query: { page = '1' } }, res) => {
   try {
     const { docs, total, limit } = await Request.paginate({}, { limit: 5, page, sort: { date: -1 } });
-    let i = 0;
-    docs.map((obj) => {
-      obj.i = (+page - 1) * limit + i + 1;
-      i += 1;
-      return obj;
-    });
+
     res.render('requestsList', {
       requests: docs,
       title: 'Requests List',
@@ -32,7 +27,7 @@ const getRequests = async ({ query: { page = '1' } }, res) => {
 };
 
 const useTrapId = async ({
-  method, ip, protocol, params: { trap_id: trapId }, cookies, headers, query,
+  app, method, ip, protocol, params: { trap_id: trapId }, cookies, headers, query,
 }, res, next) => {
   const date = moment().format('MMMM Do YYYY, h:mm:ss a');
   query = querystring.stringify(query);
@@ -45,6 +40,7 @@ const useTrapId = async ({
   });
   try {
     await request.save();
+    app.locals.io.emit('newRequest', request);
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
